@@ -1,0 +1,30 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model CollectedData {
+  id    String @id @default(uuid()) @map("id")
+  topic String
+  data  String
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("collected_data")
+}
+
+model SensorsData {
+  id  String @id @default(uuid()) @map("id")
+  tds String
+  ph  String
+
+  measuredIn DateTime @default(now()) @map("measured_in") // medido em
+
+  @@map("sensors_data")
+}
